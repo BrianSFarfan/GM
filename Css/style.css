@@ -36,7 +36,18 @@ h2,p {
         -4px -4px 8px #ffffff;
     color: #808080;
 }
-
+.btn-navbar {
+    width: 75px;
+    gap: 10px;
+    height: 45px;
+}
+.btn-table-group{
+    display: flex;
+    justify-content: space-evenly;
+}
+.btn-table-col{
+    background: red;
+}
 .menu {
     position: absolute;
     bottom: 10px;
@@ -54,15 +65,20 @@ h2,p {
                  -20px -20px 60px #ffffff;
 }
 
-.btn-navbar {
-    width: 75px;
-    gap: 10px;
-    height: 45px;
-}
+
 
 .contenedor-calculadora{
     max-width: 500px;
     margin: auto;
-    background-color: green;
+
     padding: 10px;
 }
+.contenedor-calculadora table{
+    width: 100%;
+    padding: 10px;
+    font-family: sans-serif;
+}
+.contenedor-calculadora table th{
+    border: 2px solid black;
+}
+
