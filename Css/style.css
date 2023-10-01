@@ -42,7 +42,7 @@ h2,p {
     bottom: 10px;
     left: 50%;
     transform: translate(-50%, -10px);
-    width: calc(100vw - 16px);
+    width: calc(100vw - 52px);
     max-width: 500px;
     display: flex;
     justify-content: space-around;
@@ -55,8 +55,14 @@ h2,p {
 }
 
 .btn-navbar {
- 
     width: 75px;
     gap: 10px;
     height: 45px;
+}
+
+.contenedor-calculadora{
+    max-width: 500px;
+    margin: auto;
+    background-color: green;
+    padding: 10px;
 }
