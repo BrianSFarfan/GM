@@ -48,7 +48,8 @@ h2,p {
 .btn-table-col{
     background: red;
 }
-.menu {
+
+.menu{
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -65,8 +66,6 @@ h2,p {
                  -20px -20px 60px #ffffff;
 }
 
-
-
 .contenedor-calculadora{
     max-width: 500px;
     margin: auto;
@@ -82,3 +81,20 @@ h2,p {
     border: 2px solid black;
 }
 
+.grupo-gastos{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.input-outline{
+    border: none;
+    outline: none;
+    padding: 5px 15px;
+}
+.gasto-input{
+    width: min(100%, 250px);
+    height: 30px;
+    border-radius: 50px;
+    margin: 10px auto;
+}

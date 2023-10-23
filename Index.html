@@ -26,40 +26,33 @@
 
     <!-- tabla -->
     <section class="contenedor-calculadora">
-        <table>
-            <caption>$300.000</caption>
-            <thead >
-              <tr >
-                <th>Precio</th>
-                <th>Nombre</th>
-                <th></th>                
-              </tr>
+        <div class="grupo-gastos">
+            <label>Ingresar Gasto</label>
+            <input type="text" id="gasto" class="input-outline gasto-input" placeholder="Ingrese el gasto">
+        </div>
+
+        <table class="contenedor-calculadora">
+            <thead>
+                    <th>Nombre</th>
+                    <th>Precio</th>
             </thead>
-            <tbody>
+            <tbody id="lista-gastos">
                 
-              <tr>
-                <td class="precio">$213213</td>
-                <td>The table body</td>
-                <td class="btn-table-group">
-                    <button type="button" class="btn-outline btn-table-col">a</button>
-                    <button type="button" class="btn-outline btn-table-col">b</button>
-                    <button type="button" class="btn-outline btn-table-col">c</button>
-                </td>
-              </tr>
-              
             </tbody>
-          </table>
+        </table>
+     
+
     </section>
-    
+
     <!--NAVBAR-->
     <nav class="menu">
         <button class="btn-outline btn-navbar">
             <i class="fa-solid fa-chart-line"></i>
-            <p>Historial</p>
+            <p>Calcular</p>
         </button>
-        <button class="btn-outline btn-navbar">
+        <button class="btn-outline btn-navbar" onclick="agregarGasto()">
             <i class="fa-regular fa-circle-check"></i>
-            <p>check</p>
+            <p>Agregar Gasto</p>
         </button>
         <button class="btn-outline btn-navbar">
             <i class="fa-solid fa-icons"></i>
