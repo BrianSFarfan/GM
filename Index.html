@@ -27,24 +27,32 @@
     <!-- tabla -->
     <section class="contenedor-calculadora">
         <div class="grupo-gastos">
-            <label>Ingresar Gasto</label>
-            <input type="text" id="gasto" class="input-outline gasto-input" placeholder="Ingrese el gasto">
+            <div class="nombre-gastos">
+                <label>Nombre del Gasto</label>
+                <input type="text" id="nombre" class="input-outline gasto-input" placeholder="Ingrese el nombre del gasto">
+            </div>
+
+            <div class="precio-gastos">
+                <label>Precio</label>
+                <input type="number" id="precio" class="input-outline gasto-input" placeholder="Ingrese el precio del gasto">
+            </div>
+
         </div>
 
         <table class="contenedor-calculadora">
             <thead>
-                    <th>Nombre</th>
-                    <th>Precio</th>
+                <th>Nombre</th>
+                <th>Precio</th>
             </thead>
-            <tbody id="lista-gastos">
-                
-            </tbody>
+            <tbody id="lista-gastos"></tbody>
         </table>
-     
-
     </section>
 
+
     <!--NAVBAR-->
+    <!--TOTAL-->
+    <h1 class="total">Total:<font>$</font><span id="total">0</span></h1>
+
     <nav class="menu">
         <button class="btn-outline btn-navbar">
             <i class="fa-solid fa-chart-line"></i>

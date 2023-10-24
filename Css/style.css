@@ -3,7 +3,8 @@ body {
     background-color: #ebebeb;
 }
 
-h2,p {
+h2,
+p {
     margin: 0;
 }
 
@@ -36,20 +37,23 @@ h2,p {
         -4px -4px 8px #ffffff;
     color: #808080;
 }
+
 .btn-navbar {
     width: 75px;
     gap: 10px;
     height: 45px;
 }
-.btn-table-group{
+
+.btn-table-group {
     display: flex;
     justify-content: space-evenly;
 }
-.btn-table-col{
+
+.btn-table-col {
     background: red;
 }
 
-.menu{
+.menu {
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -62,39 +66,73 @@ h2,p {
     height: 75px;
     border-radius: 50px;
     background: #ffffff;
-    box-shadow:  20px 20px 60px #d9d9d9,
-                 -20px -20px 60px #ffffff;
+    box-shadow: 20px 20px 60px #d9d9d9,
+        -20px -20px 60px #ffffff;
 }
 
-.contenedor-calculadora{
+.contenedor-calculadora {
     max-width: 500px;
     margin: auto;
 
     padding: 10px;
 }
-.contenedor-calculadora table{
+
+.contenedor-calculadora table {
     width: 100%;
     padding: 10px;
     font-family: sans-serif;
 }
-.contenedor-calculadora table th{
+
+.contenedor-calculadora table th {
     border: 2px solid black;
 }
 
-.grupo-gastos{
+.grupo-gastos {
     display: flex;
-    flex-direction: column;
     text-align: center;
 }
 
-.input-outline{
+.input-outline {
     border: none;
     outline: none;
-    padding: 5px 15px;
+    padding: 5px 10px;
 }
-.gasto-input{
+
+.gasto-input {
     width: min(100%, 250px);
     height: 30px;
     border-radius: 50px;
     margin: 10px auto;
+}
+
+.total {
+    font-size: 20px;
+    color: gray;
+}
+
+.total span {
+    color: green;
+}
+
+.total font {
+    color: green;
+    margin-left: 5px;
+}
+
+.deslizar-izquierda {
+    transition: transform 0.3s ease; /* Agrega una transición para suavizar el desplazamiento */
+    transform: translateX(-100%); /* Desplaza la fila hacia la izquierda */
+}
+
+.eliminar {
+    background-color: #ff4136;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Agrega una transición para suavizar el cambio de color */
+}
+
+.eliminar:hover {
+    background-color: #ff0000; /* Cambia el color de fondo al pasar el mouse sobre el botón */
 }
