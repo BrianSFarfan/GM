@@ -67,19 +67,31 @@ function handleTouchMove(event) {
         isSwiping = false;
     }
 }
+// ... (tu código existente)
 
 function handleTouchEnd(event) {
     if (isSwiping) {
         const deltaX = startX - (event.clientX || event.changedTouches[0].clientX);
         if (deltaX > 50) {
-            // Se deslizó hacia la izquierda, eliminar la fila
+            // Se deslizó hacia la izquierda, mostrar el botón de eliminar
             const selectedRow = event.target.parentNode;
             if (selectedRow.tagName.toLowerCase() === "tr") {
-                const precio = parseFloat(selectedRow.children[1].textContent.slice(1));
-                total -= precio;
-                selectedRow.classList.add("deslizar-izquierda"); // Agregar la clase de animación
-                selectedRow.innerHTML += '<td><button class="eliminar">Eliminar</button></td>'; // Agregar botón de eliminar
-                document.getElementById("total").textContent = total.toFixed(2);
+                const eliminarCell = document.createElement("td");
+                const eliminarButton = document.createElement("button");
+                eliminarButton.classList.add("eliminar");
+                eliminarButton.textContent = "Eliminar";
+                eliminarCell.appendChild(eliminarButton);
+                eliminarButton.addEventListener("click", function() {
+                    eliminarFila(selectedRow);
+                });
+                selectedRow.appendChild(eliminarCell);
+                selectedRow.style.transform = "translateX(-100px)"; // Desplaza la fila 100px hacia la izquierda
+            }
+        } else {
+            // Restablece la posición de la fila
+            const selectedRow = event.target.parentNode;
+            if (selectedRow.tagName.toLowerCase() === "tr") {
+                selectedRow.style.transform = "translateX(0)";
             }
         }
     }
@@ -88,4 +100,11 @@ function handleTouchEnd(event) {
     startX = 0;
     startY = 0;
     isSwiping = false;
+}
+
+function eliminarFila(row) {
+    const precio = parseFloat(row.children[1].textContent.slice(1));
+    total -= precio;
+    row.remove();
+    document.getElementById("total").textContent = total.toFixed(2);
 }
