@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensores de Movimiento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #data {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        #logs {
+            margin-top: 20px;
+            width: 80%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #eee;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Datos del Acelerómetro y Giroscopio</h1>
+    <div id="data">Esperando datos del sensor...</div>
+    <div id="logs">Logs:</div>
+
+    <script>
+        function initSensors() {
+            const dataDiv = document.getElementById('data');
+            const logsDiv = document.getElementById('logs');
+
+            function log(message) {
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.textContent = message;
+                logsDiv.appendChild(logEntry);
+                logsDiv.scrollTop = logsDiv.scrollHeight;
+            }
+
+            // Acelerómetro
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', function(event) {
+                    const acceleration = event.acceleration;
+                    const accelData = `
+                        <strong>Acelerómetro:</strong><br>
+                        Aceleración X: ${acceleration.x ? acceleration.x.toFixed(2) : 'N/A'}<br>
+                        Aceleración Y: ${acceleration.y ? acceleration.y.toFixed(2) : 'N/A'}<br>
+                        Aceleración Z: ${acceleration.z ? acceleration.z.toFixed(2) : 'N/A'}<br><br>
+                    `;
+                    dataDiv.innerHTML = accelData;
+                    log(`Acelerómetro - X: ${acceleration.x}, Y: ${acceleration.y}, Z: ${acceleration.z}`);
+                });
+            } else {
+                dataDiv.innerHTML += "El acelerómetro no es compatible con este dispositivo.<br>";
+                log("El acelerómetro no es compatible con este dispositivo.");
+            }
+
+            // Giroscopio
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', function(event) {
+                    const alpha = event.alpha;
+                    const beta = event.beta;
+                    const gamma = event.gamma;
+                    const gyroData = `
+                        <strong>Giroscopio:</strong><br>
+                        Alpha (Z-axis): ${alpha.toFixed(2)}<br>
+                        Beta (X-axis): ${beta.toFixed(2)}<br>
+                        Gamma (Y-axis): ${gamma.toFixed(2)}<br>
+                    `;
+                    dataDiv.innerHTML += gyroData;
+                    log(`Giroscopio - Alpha: ${alpha}, Beta: ${beta}, Gamma: ${gamma}`);
+                });
+            } else {
+                dataDiv.innerHTML += "El giroscopio no es compatible con este dispositivo.<br>";
+                log("El giroscopio no es compatible con este dispositivo.");
+            }
+        }
+
+        initSensors();
+    </script>
+</body>
+</html>
