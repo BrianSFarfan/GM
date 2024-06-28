@@ -86,6 +86,15 @@
             border-bottom: 2px solid rgb(23, 23, 23);
             padding-bottom: 10px;
         }
+        .A1 font,.B1 font{
+            color: red;
+        }
+        .A2 font,.B2 font{
+            color: blue;
+        }
+        .A3 font,.B3 font{
+            color: green;
+        }
 
         #logs {
             margin-top: 20px;
@@ -136,9 +145,9 @@
                     const accelData = `
                         <h2>Acelerómetro:</h2>
                 
-                        <p class='A1'>Aceleración X:<br>${acceleration.x ? acceleration.x.toFixed(2) : 'N/A'}</p>
-                        <p class='A2'>Aceleración Y:<br> ${acceleration.y ? acceleration.y.toFixed(2) : 'N/A'}</p>
-                        <p class='A3'>Aceleración Z:<br> ${acceleration.z ? acceleration.z.toFixed(2) : 'N/A'}</p>
+                        <p class='A1'>Aceleración X:<br><font> ${acceleration.x ? acceleration.x.toFixed(2) : 'N/A'} </font></p>
+                        <p class='A2'>Aceleración Y:<br><font> ${acceleration.y ? acceleration.y.toFixed(2) : 'N/A'} </font></p>
+                        <p class='A3'>Aceleración Z:<br><font> ${acceleration.z ? acceleration.z.toFixed(2) : 'N/A'} </font></p>
                    
                     `;
                     accelDiv.innerHTML = accelData;
@@ -157,9 +166,9 @@
                     const gamma = event.gamma;
                     const gyroData = `
                         <h2>Giroscopio:</h2>
-                        <p class='B1'>Alpha (Z-axis):<br> ${alpha.toFixed(2)}</p>
-                        <p class='B2'>Beta (X-axis):<br> ${beta.toFixed(2)}</p>
-                        <p class='B3'>Gamma (Y-axis):<br> ${gamma.toFixed(2)}</p>
+                        <p class='B1'>Alpha (Z-axis):<br><font> ${alpha.toFixed(2)} </font></p>
+                        <p class='B2'>Beta (X-axis):<br><font> ${beta.toFixed(2)} </font></p>
+                        <p class='B3'>Gamma (Y-axis):<br><font> ${gamma.toFixed(2)} </font></p>
                     `;
                     gyroDiv.innerHTML = gyroData;
                     log(`Giroscopio - Alpha: ${alpha}, Beta: ${beta}, Gamma: ${gamma}`);
