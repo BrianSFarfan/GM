@@ -32,7 +32,7 @@
             transform: translate(-50%);
         }
         .A1{
-            top:20%;
+            top: 20%;
         }
         .A2{
             top: 45%;
@@ -40,6 +40,21 @@
         }
         .A3{
             bottom: 20%;
+        }
+        .B1, .B2, .B3 {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        .B1{
+            top: 60%;
+        }
+        .B2{
+            top: 75%;
+            transform: translate(-50%,-50%);
+        }
+        .B3{
+            bottom: 5%;
         }
         h2{
             border-bottom: 2px solid rgb(23, 23, 23);
@@ -65,12 +80,16 @@
 </head>
 <body>
     <h1>Datos del Acelerómetro y Giroscopio</h1>
-    <div id="data">Esperando datos del sensor...</div>
+    <div id="data">
+        <div id="accelerometer">Esperando datos del acelerómetro...</div>
+        <div id="gyroscope">Esperando datos del giroscopio...</div>
+    </div>
     <!-- <div id="logs">Logs:</div> -->
 
     <script>
         function initSensors() {
-            const dataDiv = document.getElementById('data');
+            const accelDiv = document.getElementById('accelerometer');
+            const gyroDiv = document.getElementById('gyroscope');
             const logsDiv = document.getElementById('logs');
 
             function log(message) {
@@ -82,44 +101,42 @@
             }
 
             // Acelerómetro
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', function(event) {
+                    const acceleration = event.acceleration;
+                    const accelData = `
+                        <h2>Acelerómetro:</h2>
+                        <p class='A1'>Aceleración X: ${acceleration.x ? acceleration.x.toFixed(2) : 'N/A'}</p>
+                        <p class='A2'>Aceleración Y: ${acceleration.y ? acceleration.y.toFixed(2) : 'N/A'}</p>
+                        <p class='A3'>Aceleración Z: ${acceleration.z ? acceleration.z.toFixed(2) : 'N/A'}</p>
+                    `;
+                    accelDiv.innerHTML = accelData;
+                    log(`Acelerómetro - X: ${acceleration.x}, Y: ${acceleration.y}, Z: ${acceleration.z}`);
+                });
+            } else {
+                accelDiv.innerHTML += "El acelerómetro no es compatible con este dispositivo.<br>";
+                log("El acelerómetro no es compatible con este dispositivo.");
+            }
+
+            // Giroscopio
             if (window.DeviceOrientationEvent) {
                 window.addEventListener('deviceorientation', function(event) {
                     const alpha = event.alpha;
                     const beta = event.beta;
                     const gamma = event.gamma;
                     const gyroData = `
-                        <h2>Acelerómetro:</h2>
-                        <p class='A1'> Aceleración X: ${alpha.toFixed(2)}</p>
-                        <p class='A2'> Aceleración Y: ${beta.toFixed(2)}</p>
-                        <p class='A3'> Aceleración Z: ${gamma.toFixed(2)}</p>
+                        <h2>Giroscopio:</h2>
+                        <p class='B1'>Alpha (Z-axis): ${alpha.toFixed(2)}</p>
+                        <p class='B2'>Beta (X-axis): ${beta.toFixed(2)}</p>
+                        <p class='B3'>Gamma (Y-axis): ${gamma.toFixed(2)}</p>
                     `;
-                    dataDiv.innerHTML += gyroData;
+                    gyroDiv.innerHTML = gyroData;
                     log(`Giroscopio - Alpha: ${alpha}, Beta: ${beta}, Gamma: ${gamma}`);
                 });
             } else {
-                dataDiv.innerHTML += "El giroscopio no es compatible con este dispositivo.<br>";
+                gyroDiv.innerHTML += "El giroscopio no es compatible con este dispositivo.<br>";
                 log("El giroscopio no es compatible con este dispositivo.");
             }
-
-            // Giroscopio
-            /*if (window.DeviceOrientationEvent) {
-                window.addEventListener('deviceorientation', function(event) {
-                    const alpha = event.alpha;
-                    const beta = event.beta;
-                    const gamma = event.gamma;
-                    const gyroData = `
-                        <strong>Giroscopio:</strong><br>
-                        Alpha (Z-axis): ${alpha.toFixed(2)}<br>
-                        Beta (X-axis): ${beta.toFixed(2)}<br>
-                        Gamma (Y-axis): ${gamma.toFixed(2)}<br>
-                    `;
-                    dataDiv.innerHTML += gyroData;
-                    log(`Giroscopio - Alpha: ${alpha}, Beta: ${beta}, Gamma: ${gamma}`);
-                });
-            } else {
-                dataDiv.innerHTML += "El giroscopio no es compatible con este dispositivo.<br>";
-                log("El giroscopio no es compatible con este dispositivo.");
-            }*/
         }
 
         initSensors();
