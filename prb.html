@@ -82,7 +82,7 @@
             }
 
             // Acelerómetro
-            if (window.DeviceMotionEvent) {
+            if (window.DeviceOrientationEvent) {
                 window.addEventListener('devicemotion', function(event) {
                     const alpha = event.alpha;
                     const beta = event.beta;
