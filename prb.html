@@ -84,12 +84,14 @@
             // Acelerómetro
             if (window.DeviceMotionEvent) {
                 window.addEventListener('devicemotion', function(event) {
-                    const acceleration = event.acceleration;
+                    const alpha = event.alpha;
+                    const beta = event.beta;
+                    const gamma = event.gamma;
                     const accelData = `
                         <h2>Acelerómetro:</h2>
-                        <p class='A1'> Aceleración X: ${acceleration.x ? acceleration.x.toFixed(2) : 'N/A'}</p>
-                        <p class='A2'> Aceleración Y: ${acceleration.y ? acceleration.y.toFixed(2) : 'N/A'}</p>
-                        <p class='A3'> Aceleración Z: ${acceleration.z ? acceleration.z.toFixed(2) : 'N/A'}</p>
+                        <p class='A1'> Aceleración X: ${alpha.toFixed(2)}</p>
+                        <p class='A2'> Aceleración Y: ${beta.toFixed(2)}</p>
+                        <p class='A3'> Aceleración Z: ${gamma.toFixed(2)}</p>
                     `;
                     dataDiv.innerHTML = accelData;
                     log(`Acelerómetro - X: ${acceleration.x}, Y: ${acceleration.y}, Z: ${acceleration.z}`);
@@ -100,7 +102,7 @@
             }
 
             // Giroscopio
-            if (window.DeviceOrientationEvent) {
+            /*if (window.DeviceOrientationEvent) {
                 window.addEventListener('deviceorientation', function(event) {
                     const alpha = event.alpha;
                     const beta = event.beta;
@@ -117,7 +119,7 @@
             } else {
                 dataDiv.innerHTML += "El giroscopio no es compatible con este dispositivo.<br>";
                 log("El giroscopio no es compatible con este dispositivo.");
-            }
+            }*/
         }
 
         initSensors();
