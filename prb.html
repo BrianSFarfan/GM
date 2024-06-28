@@ -22,6 +22,28 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            height: 500px;
+            position: relative;
+            width: 300px;
+        }
+        .A1, .A2, .A3 {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        .A1{
+            top:20%;
+        }
+        .A2{
+            top: 45%;
+            transform: translate(-50%,-50%);
+        }
+        .A3{
+            bottom: 20%;
+        }
+        h2{
+            border-bottom: 2px solid rgb(23, 23, 23);
+            padding-bottom: 10px;
         }
         #logs {
             margin-top: 20px;
@@ -64,10 +86,10 @@
                 window.addEventListener('devicemotion', function(event) {
                     const acceleration = event.acceleration;
                     const accelData = `
-                        <strong>Acelerómetro:</strong><br>
-                        Aceleración X: ${acceleration.x ? acceleration.x.toFixed(2) : 'N/A'}<br>
-                        Aceleración Y: ${acceleration.y ? acceleration.y.toFixed(2) : 'N/A'}<br>
-                        Aceleración Z: ${acceleration.z ? acceleration.z.toFixed(2) : 'N/A'}<br><br>
+                        <h2>Acelerómetro:</h2>
+                        <p class='A1'> Aceleración X: ${acceleration.x ? acceleration.x.toFixed(2) : 'N/A'}</p>
+                        <p class='A2'> Aceleración Y: ${acceleration.y ? acceleration.y.toFixed(2) : 'N/A'}</p>
+                        <p class='A3'> Aceleración Z: ${acceleration.z ? acceleration.z.toFixed(2) : 'N/A'}</p>
                     `;
                     dataDiv.innerHTML = accelData;
                     log(`Acelerómetro - X: ${acceleration.x}, Y: ${acceleration.y}, Z: ${acceleration.z}`);
